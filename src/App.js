@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Calculator from './components/Calculator';
+import CalcProvider from './components/CalcProvider';
+
+
+const express = require ('express');
+const path = require('path');
+const app = express();
+const http = require('http').createServer(app);
+
+app.use(express.static())
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    console.log(localStorage, "<== LOCAL STORAGE");
+    return(
+        <CalcProvider>
+            <meta charset="utf-8"/>
+            <Calculator />
+        </CalcProvider>
+    )
 }
 
 export default App;
