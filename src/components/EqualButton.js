@@ -2,14 +2,18 @@ import React, { useContext } from 'react';
 import { CalcContext } from './CalcProvider';
 
 const EqualButton = () => {
-  const { calculate } = useContext(CalcContext);
+  const { calculate, number, sendChatAction } = useContext(CalcContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
+    calculate();
+    console.log(e.target.value);
+    console.log("test");
+    sendChatAction(number + " = " + String(eval(number)));
   }
 
   return (
-    <button className="white-button" type="submit" onSubmit={handleSubmit} onClick={() => calculate()}>
+    <button className="white-button" type="submit" onClick={(e) => handleSubmit(e)}>
       =
     </button>
   );

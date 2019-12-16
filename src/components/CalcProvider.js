@@ -1,10 +1,25 @@
 import React, { useState, createContext } from 'react';
+import io from 'socket.io-client';
 
 export const CalcContext = createContext();
 
+
+const sendChatAction = (value) => {
+    socket.emit('calc message', value);
+    console.log(value);
+}
+
+let socket;
+
 const CalcProvider = props => {
+
     const [number, setNumber] = useState('');
     const [calculationList, setCalculationList] = useState([]);
+
+    if(!socket) {
+        socket = io(':3001');
+    }
+
 
     // takes care of displaying the digit clicked
     const handleSetDisplayValue = num => {
@@ -26,19 +41,21 @@ const CalcProvider = props => {
         };
     }
 
+    // adds latest calculation to collection of calculations
     const addCalculation = (calculation) => {
         const newCalculation = {
             id: calculationList.length,
             calculation: calculation
         }
-
         setCalculationList([newCalculation.calculation, ...calculationList]);
     }
 
+    // creates calculation string, calculates total
     const calculate = () => {
         const result = number + " = " + eval(number);
         setNumber(String(eval(number)));
         addCalculation(result);
+        sendChatAction(calculationList[0]);
         handleClearValue();
     };
 
@@ -51,6 +68,7 @@ const CalcProvider = props => {
                 handleClearValue,
                 handleSetDisplayValue,
                 number,
+                sendChatAction,
                 setNumber,
             }}
         >
