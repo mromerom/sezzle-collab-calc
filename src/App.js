@@ -5,7 +5,7 @@ import CalcProvider from './components/CalcProvider';
 
 function App() {
 
-    console.log(localStorage, "<== LOCAL STORAGE");
+    // console.log(localStorage, "<== LOCAL STORAGE");
     return(
         <CalcProvider>
             <Calculator />
