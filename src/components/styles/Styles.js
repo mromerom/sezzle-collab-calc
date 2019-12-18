@@ -10,14 +10,16 @@ export const CalculatorStyles = styled.div`
   grid-template-rows: minmax(200px 350px) 1fr;
   grid-template-columns: 1fr;
   @media (max-width: 500px) {
-    max-width: 90%;
+    max-width: 100%;
     padding: 5%;
+    overflow-x: hidden;
   }
   .display {
-    font-family: 'Menlo', 'Monaco', monospace;
     /* grid-area: display; */
+    font-family: 'Menlo', 'Monaco', monospace;
     margin: 0 !important;
-    width: 100%;
+    // width: 100%;
+    margin-right: 10px
     @media (max-width: 500px) {
       width: 100%;
       max-height: 200px;
@@ -126,6 +128,9 @@ export const DisplayStyles = styled.div`
 `;
 
 export const CalcMessageStyles = styled.div`
+  .messagesWrapper {
+    overflow-x: hidden;
+  }
   .calcMessage {
     width: 100%;
     height: 50px;
@@ -137,5 +142,9 @@ export const CalcMessageStyles = styled.div`
     font-family: 'Menlo', 'Monaco', monospace;
     border-top: 1px white solid;
     background-color: black;
+    @media (max-width: 500px) {
+      width: 100%;
+      max-height: 200px;
+    }
   }
 `;

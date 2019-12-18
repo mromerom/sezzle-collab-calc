@@ -24,11 +24,15 @@ const sendChatAction = (value) => {
 
 const CalcProvider = props => {
 
-    const [number, setNumber] = useState('');    
+    const [number, setNumber] = useState('');
+
+    // reducer checks for local storage
     const [allCalculations, dispatch] = React.useReducer(reducer, initialState, () => {
         const localData = localStorage.getItem("allCalculations");
         return localData ? JSON.parse(localData) : [];
     });
+
+    // employing useEffect hook to add to local storage
     useEffect(() => {
         localStorage.setItem("allCalculations", JSON.stringify(allCalculations))
     }, [allCalculations]);
@@ -42,7 +46,7 @@ const CalcProvider = props => {
 
     // takes care of displaying the digit clicked
     const handleSetDisplayValue = num => {
-        if ((!number.includes('.') || num !== '.') && number.length < 10) {
+        if ((!number.includes('.') || num !== '.') && number.length < 16) {
             setNumber(`${(number + num).replace(/^0+/, '')}`);
         }
     };
@@ -93,11 +97,13 @@ const CalcProvider = props => {
         >
             {props.children}
         <CalcMessageStyles>
-            {allCalculations.slice(0,10).map((message, i) => (
-                <div className="calcMessage" value={message.msg} key={i}>
-                    {message.msg}
-                </div>
-            ))}
+            <div className="messagesWrapper">
+                {allCalculations.slice(0,10).map((message, i) => (
+                    <div className="calcMessage" value={message.msg} key={i}>
+                        {message.msg}
+                    </div>
+                ))}
+            </div>
         </CalcMessageStyles>
         </CalcContext.Provider>
     );
