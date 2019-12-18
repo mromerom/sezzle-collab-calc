@@ -41,7 +41,8 @@ export const CalculatorStyles = styled.div`
     margin: 0 auto;
     border: white solid;
     border-radius: 20px;
-    padding: 20px 20px 0px 20px
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 20px;
     @media (max-width: 500px) {
       width: 100%;
       margin: 0;

@@ -93,7 +93,7 @@ const CalcProvider = props => {
         >
             {props.children}
         <CalcMessageStyles>
-            {allCalculations.map((message, i) => (
+            {allCalculations.slice(0,10).map((message, i) => (
                 <div className="calcMessage" value={message.msg} key={i}>
                     {message.msg}
                 </div>
