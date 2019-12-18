@@ -14,7 +14,7 @@ export const CalculatorStyles = styled.div`
     padding: 5%;
   }
   .display {
-    font-family: 'Orbitron', monospace;
+    font-family: 'Menlo', 'Monaco', monospace;
     /* grid-area: display; */
     margin: 0 !important;
     width: 100%;
@@ -54,7 +54,7 @@ export const CalculatorStyles = styled.div`
       border: 3px solid white;
       font-size: 2rem;
       color: white;
-      font-family: 'Orbitron', monospace;
+      font-family: 'Menlo', 'Monaco', monospace;
       background: black;
       &:focus {
         outline: none;
@@ -134,7 +134,7 @@ export const CalcMessageStyles = styled.div`
     color: white;
     font-size: 16px;
     font-weight: bold;
-    font-family: monospace;
+    font-family: 'Menlo', 'Monaco', monospace;
     border-top: 1px white solid;
     background-color: black;
   }
