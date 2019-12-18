@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CalcContext } from './CalcProvider';
 
 const EqualButton = () => {
-  const { calculate, number, sendChatAction } = useContext(CalcContext);
+  const { allCalculations, calculate, number, sendChatAction } = useContext(CalcContext);
 
   return (
     <button
@@ -11,7 +11,7 @@ const EqualButton = () => {
       onClick={(e) => {
         e.preventDefault();
         calculate();
-        sendChatAction(String(number + " = " + eval(number)));
+        sendChatAction({msg: String(number + " = " + eval(number))});
       }}
     >
       =
