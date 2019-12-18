@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CalcContext } from './CalcProvider';
 
 const EqualButton = () => {
-  const { allCalculations, calculate, number, sendChatAction } = useContext(CalcContext);
+  const { calculate, number, sendChatAction } = useContext(CalcContext);
 
   return (
     <button
