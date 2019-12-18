@@ -1,5 +1,6 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import io from 'socket.io-client';
+import { CalcMessageStyles } from './styles/Styles';
 
 export const CalcContext = createContext();
 
@@ -24,15 +25,20 @@ const sendChatAction = (value) => {
 const CalcProvider = props => {
 
     const [number, setNumber] = useState('');    
-    const [allCalculations, dispatch] = React.useReducer(reducer, initialState);
+    const [allCalculations, dispatch] = React.useReducer(reducer, initialState, () => {
+        const localData = localStorage.getItem("allCalculations");
+        return localData ? JSON.parse(localData) : [];
+    });
+    useEffect(() => {
+        localStorage.setItem("allCalculations", JSON.stringify(allCalculations))
+    }, [allCalculations]);
 
     if(!socket) {
         socket = io(':3001');
         socket.on('chat message', function(msg){
-            console.log({msg});
             dispatch({type: 'RECEIVE_MESSAGE', payload: msg})
         });
-    }    
+    }
 
     // takes care of displaying the digit clicked
     const handleSetDisplayValue = num => {
@@ -60,6 +66,18 @@ const CalcProvider = props => {
         handleClearValue();
     };
 
+    // custom hook; takes care of storing calculations locally between sessions
+    function useLocalState(localItem) {
+        
+        const [local, setState] = useState(localStorage.getItem(localItem));
+
+        function setLocal(newItem) {
+            localStorage.setItem(localItem, newItem);
+            setState(newItem);
+        }
+        return [local, setLocal];
+    }
+
     return (
         <CalcContext.Provider
             value={{
@@ -74,11 +92,13 @@ const CalcProvider = props => {
             }}
         >
             {props.children}
+        <CalcMessageStyles>
             {allCalculations.map((message, i) => (
-                <div value={message.msg} key={i}>
+                <div className="calcMessage" value={message.msg} key={i}>
                     {message.msg}
                 </div>
             ))}
+        </CalcMessageStyles>
         </CalcContext.Provider>
     );
 };

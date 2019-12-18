@@ -123,3 +123,18 @@ export const DisplayStyles = styled.div`
     font-size: 0.5rem;
   }
 `;
+
+export const CalcMessageStyles = styled.div`
+  .calcMessage {
+    width: 100%;
+    height: 50px;
+    padding: 20px 0 0 20px;
+    text-align: left;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: monospace;
+    border-top: 1px white solid;
+    background-color: black;
+  }
+`;
