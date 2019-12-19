@@ -28,7 +28,7 @@
     "yjs": "^13.0.0-78"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "react-scripts start",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
