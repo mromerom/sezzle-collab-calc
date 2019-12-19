@@ -2,7 +2,8 @@
   "name": "sezzlecalc",
   "version": "0.1.0",
   "engines": {
-    "nodes": "8.11.1"
+    "node": "8.11.1",
+    "npm": "6.10.2"
   },
   "private": true,
   "dependencies": {
